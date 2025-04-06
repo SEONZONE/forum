@@ -1,10 +1,27 @@
-import { connectDB } from "@/util/database"
-export default async function Home() { 
-  const db = (await connectDB).db("forum")
+import Link from "next/link";
+import DetailLink from "@/app/list/DetailLink"
 
-  let result = await db.collection('post').find().toArray()
-  console.log(JSON.stringify(result))
-  return ( 
-    <div> 안녕 </div>
-  )
+export default async function Home() {
+  return (
+    <div className="list-bg">
+            <div className="list-item">
+              <DetailLink
+                contents="list 페이지"
+                urlParam={`/list`}
+              />
+            </div>
+            <div className="list-item">
+              <DetailLink
+                contents="register 페이지"
+                urlParam={`/register`}
+              />
+            </div>
+            <div className="list-item">
+              <DetailLink
+                contents="write 페이지"
+                urlParam={`/write`}
+              />
+            </div>
+    </div>
+  );
 }
