@@ -19,10 +19,18 @@ export default function ListItem({ result }) {
               <Link href={`/edit/${result[i]._id}`}> ✏️ </Link>
               <span
                 onClick={(e) => {
-                  fetch("/api/delete", {
-                    method: "DELETE",
-                    body: JSON.stringify({ _id: result[i]._id }),
-                  })
+                  // fetch("/api/delete", {
+                  //   method: "DELETE",
+                  //   body: JSON.stringify({ _id: result[i]._id }),
+                  // })
+                  //   .then((r) => r.json())
+                  //   .then(() => {
+                  //     e.target.parentElement.style.opacity = 0;
+                  //     setTimeout(() => {
+                  //       e.target.parentElement.style.display = "none";
+                  //     }, 1000);
+                  //   });
+                  fetch(`/api/delete/${result[i]._id}`)
                     .then((r) => r.json())
                     .then(() => {
                       e.target.parentElement.style.opacity = 0;
