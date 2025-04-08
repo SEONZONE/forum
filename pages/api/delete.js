@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 export default async function handler(request, response) {
   const db = (await connectDB).db("forum");
 
-  if (request.method == "POST") {
+  if (request.method == "DELETE") {
     try {
       // 클라이언트에서 JSON으로 전송된 데이터 파싱
       const body = JSON.parse(request.body);

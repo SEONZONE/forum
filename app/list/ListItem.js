@@ -18,17 +18,21 @@ export default function ListItem({ result }) {
               />
               <Link href={`/edit/${result[i]._id}`}> ✏️ </Link>
               <span
-                onClick={() => {
+                onClick={(e) => {
                   fetch("/api/delete", {
-                    method: "POST",
+                    method: "DELETE",
                     body: JSON.stringify({ _id: result[i]._id }),
-                  }).then(() => {
-                    alert("삭제완료");
-                  });
+                  })
+                    .then((r) => r.json())
+                    .then(() => {
+                      e.target.parentElement.style.opacity = 0;
+                      setTimeout(() => {
+                        e.target.parentElement.style.display = "none";
+                      }, 1000);
+                    });
                 }}
               >
-                {" "}
-                🗑️{" "}
+                🗑️
               </span>
             </div>
           )
